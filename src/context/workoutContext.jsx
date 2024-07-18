@@ -1,18 +1,17 @@
-
-
 import { createContext, useContext, useReducer, useEffect } from "react";
 
 const WorkoutContext = createContext();
 
-let initialWorkouts = JSON.parse(localStorage.getItem('workouts')) 
+let initialWorkouts = JSON.parse(localStorage.getItem('workouts'));
 
-if(initialWorkouts.length === 0){ 
+if (!initialWorkouts || initialWorkouts.length === 0) {
   initialWorkouts = [
-  { name: 'vamsi', workoutType: 'cycling', minutes: '60' },
-  { name: 'rocky', workoutType: 'running', minutes: '50' },
-  { name: 'riya', workoutType: 'swimming', minutes: '50' }
-]
+    { name: 'vamsi', workoutType: 'cycling', minutes: 60 },
+    { name: 'rocky', workoutType: 'running', minutes: 50 },
+    { name: 'riya', workoutType: 'swimming', minutes: 50 }
+  ];
 }
+
 const workoutReducer = (state, action) => {
   switch (action.type) {
     case 'ADD_WORKOUT':
@@ -36,8 +35,6 @@ const workoutReducer = (state, action) => {
 
 export const WorkoutProvider = ({ children }) => {
   const [state, dispatch] = useReducer(workoutReducer, initialWorkouts);
-
- 
 
   useEffect(() => {
     localStorage.setItem('workouts', JSON.stringify(state));
