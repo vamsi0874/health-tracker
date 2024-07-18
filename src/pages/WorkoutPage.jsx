@@ -25,7 +25,7 @@ export const WorkoutPage = () => {
   const filteredWorkouts = workouts
     .filter(workout => 
       workout.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
-      (filterType === '' || workout.workoutType === filterType)
+      (filterType === '' || workout.workoutType.toLowerCase() === filterType.toLowerCase())
     );
 
  
