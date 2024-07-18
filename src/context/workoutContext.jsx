@@ -2,12 +2,7 @@ import { createContext, useContext, useReducer, useEffect } from "react";
 
 const WorkoutContext = createContext();
 
-let initialWorkouts = [
-  { name: 'vamsi', workoutType: 'cycling', minutes: 60 },
-  { name: 'rocky', workoutType: 'running', minutes: 50 },
-  { name: 'riya', workoutType: 'swimming', minutes: 50 }
-];
-// JSON.parse(localStorage.getItem('workouts'));
+let initialWorkouts = JSON.parse(localStorage.getItem('workouts'));
 
 if (!initialWorkouts || initialWorkouts.length === 0) {
   initialWorkouts = [
